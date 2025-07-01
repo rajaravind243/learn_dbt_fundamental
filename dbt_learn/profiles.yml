@@ -1,11 +1,15 @@
-dbt_learn:
-  target: dev
+# profiles.yml
+dbt_learn:                  # ← this key must match profile: in dbt_project.yml
+  target: dev               # ← the “dev” label
   outputs:
-    dev:
+    dev:                    # ← must match target above
       type: snowflake
-      role: ACCOUNTADMIN
-      warehouse: COMPUTE_WH
-      database: DEMO_DB
-      schema: DEMO_SCH
-      account: ''
-      user: ''
+      account: "CZXDJYE-KL63136"  # ← your account identifier
+      user:    "PRANAV"          # ← your Snowflake user
+      password: "InfoPranav##11" # ← your password (or use env_var)
+      role:    "ACCOUNTADMIN"
+      warehouse: "COMPUTE_WH"
+      database:  "DEMO_DB"
+      schema:    "DEMO_SCH"
+      threads:   1
+      client_session_keep_alive: false

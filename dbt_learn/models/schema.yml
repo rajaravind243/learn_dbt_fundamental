@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fct_sales
+    tests:
+      - not_null:
+          column_name: sale_id
+
+      - relationships:
+          column_name: customer_id
+          to:          ref('dim_customers')
+          field:       customer_id
+
+      - relationships:
+          column_name: product_id
+          to:          ref('dim_products')
+          field:       product_id

@@ -1,19 +1,21 @@
-name: dbt_learn
-version: 1.0.0
+# dbt_project.yml
+name: 'dbt_learn'           # ← this is your project name
+version: '1.0'
 config-version: 2
-profile: dbt_learn
-model-paths:
-  - models
-analysis-paths:
-  - analyses
-test-paths:
-  - tests
-seed-paths:
-  - seeds
-macro-paths:
-  - macros
-snapshot-paths:
-  - snapshots
+
+profile: 'dbt_learn'        # ← must exactly match the key in profiles.yml
+
+model-paths:       ["models"]
+seed-paths:        ["seeds"]
+snapshot-paths:    ["snapshots"]
+analysis-paths:    ["analyses"]
+macro-paths:       ["macros"]
+
 models:
-  dbt_learn:
-    +materialized: view
+  dbt_learn:               # ← must match `name:` above
+    staging:               # ← matches models/staging/
+      +materialized: view
+      +schema: staging
+    core:                  # ← matches models/core/
+      +materialized: table
+      +schema: analytics
